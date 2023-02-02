@@ -9,11 +9,29 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var dog = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        self.tableView.rowHeight = 44.0
+        DogAPIHelper.fetchdog{newArray in
+            self.dog = newArray
+            self.tableView.reloadData()
+            
     }
 
-
 }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let index = tableView.indexPathForSelectedRow!.row
+        let selectedDog = dog[index].self
+        let dst = segue.destination as! DetailsController
+        dst.dogName = selectedDog
+    }
 
