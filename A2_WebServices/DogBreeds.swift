@@ -6,3 +6,20 @@
 //
 
 import Foundation
+
+struct DogBreeds: Codable {
+    var message: [String: [String]]
+    var status: String
+}
+
+struct DogImage: Codable{
+    var image: String
+}
+
+
+class Dog: Codable{
+    var name: String
+    init(name: String){
+        self.name = name
+    }
+}
