@@ -43,3 +43,27 @@ class ViewController: UIViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dog", for: indexPath) as!
         DogTableViewCell
         cell.dogName.text = dog[indexPath.row]
+
+        DogAPIHelper.fetchdog { newArray in
+            let URL: String = "https://dog.ceo/api/breed/"
+                let List = newArray[indexPath.row]
+                let url: String = URL + List + "/images"
+            
+                DogAPIHelper.fetchImage(url: url ) {dogImage in
+
+                    for _ in 0...100000{
+                        continue
+                    }
+                    do{
+
+                        try
+                        cell.dogImage.image = UIImage(data: NSData(contentsOf: NSURL(string: dogImage[0])! as URL) as Data)
+                    }catch let error{
+                        print(error)
+                    }
+   
+               }
+        }
+        return cell
+    }
+}
