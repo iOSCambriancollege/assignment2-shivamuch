@@ -5,9 +5,9 @@
 //  Created by Shivam Bajaj on 2023-02-01.
 //
 
-import Foundation
+import UIKit
 
-class DetailsController: UIViewController {
+class DetailsController: UIViewController{
     var dogName: String!
     let URL: String = "https://dog.ceo/api/breed/"
     @IBOutlet weak var dogMainImage: UIImageView!
