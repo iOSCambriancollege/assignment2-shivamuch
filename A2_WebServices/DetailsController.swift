@@ -30,3 +30,24 @@ class DetailsController: UIViewController {
                 }
           }
     }
+
+    @IBAction func NewDogImageButton(_ sender: Any) {
+        let url: String = URL + dogName + "/images"
+
+            DogAPIHelper.fetchImage(url: url ) {dogImage in
+
+                for _ in 0...1000000{
+                    continue
+                }
+                         
+                do{
+                try
+                    
+                   self.dogMainImage.image = UIImage(data: NSData(contentsOf: NSURL(string: dogImage.randomElement()!)! as URL) as Data)
+  
+               }catch let error{
+                   print(error)
+               }
+          }
+    }
+}
