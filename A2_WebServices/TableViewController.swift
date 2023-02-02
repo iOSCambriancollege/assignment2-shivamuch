@@ -7,23 +7,22 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TableViewController: UITableViewController {
     
     var dog = [String]()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
+
         self.tableView.rowHeight = 44.0
         DogAPIHelper.fetchdog{newArray in
             self.dog = newArray
             self.tableView.reloadData()
-            
-        }
+       }
         
-    }
-    
+     }
+      
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -34,7 +33,7 @@ class ViewController: UIViewController {
         let dst = segue.destination as! DetailsController
         dst.dogName = selectedDog
     }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dog.count
     }
@@ -43,7 +42,7 @@ class ViewController: UIViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "dog", for: indexPath) as!
         DogTableViewCell
         cell.dogName.text = dog[indexPath.row]
-
+        
         DogAPIHelper.fetchdog { newArray in
             let URL: String = "https://dog.ceo/api/breed/"
                 let List = newArray[indexPath.row]
@@ -66,4 +65,6 @@ class ViewController: UIViewController {
         }
         return cell
     }
+    
+    
 }
