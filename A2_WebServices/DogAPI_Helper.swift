@@ -6,3 +6,12 @@
 //
 
 import Foundation
+import UIKit
+struct DogAPIHelper{
+    
+    private static let baseURL : String = "https://dog.ceo/api/breeds/list"
+
+    private static let session: URLSession = {
+        let config = URLSessionConfiguration.default
+        return URLSession(configuration: config)
+    }()
