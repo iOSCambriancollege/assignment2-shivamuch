@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     var dog = [String]()
     
     override func viewDidLoad() {
@@ -20,9 +20,9 @@ class ViewController: UIViewController {
             self.dog = newArray
             self.tableView.reloadData()
             
+        }
+        
     }
-
-}
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -34,4 +34,12 @@ class ViewController: UIViewController {
         let dst = segue.destination as! DetailsController
         dst.dogName = selectedDog
     }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dog.count
+    }
 
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "dog", for: indexPath) as!
+        DogTableViewCell
+        cell.dogName.text = dog[indexPath.row]
